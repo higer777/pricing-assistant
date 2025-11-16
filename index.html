@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小店定价助手 - 网页版</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 头部 -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1><i class="fas fa-calculator"></i> 小店定价助手</h1>
+                <p class="subtitle">智能定价，轻松盈利</p>
+            </div>
+        </header>
+
+        <!-- 主内容 -->
+        <main class="main-content">
+            <!-- 输入表单 -->
+            <section class="input-section">
+                <div class="card">
+                    <h2><i class="fas fa-edit"></i> 商品信息</h2>
+                    
+                    <div class="form-group">
+                        <label for="productName">
+                            <i class="fas fa-tag"></i> 商品名称
+                        </label>
+                        <input type="text" id="productName" placeholder="输入商品名称">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="costPrice">
+                            <i class="fas fa-yuan-sign"></i> 成本价 (元)
+                        </label>
+                        <input type="number" id="costPrice" step="0.01" placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-list"></i> 商品类别</label>
+                        <div class="category-buttons">
+                            <button class="category-btn active" data-category="生鲜">生鲜</button>
+                            <button class="category-btn" data-category="百货">百货</button>
+                            <button class="category-btn" data-category="粮油">粮油</button>
+                            <button class="category-btn" data-category="其他">其他</button>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="daysToExpire">
+                                <i class="fas fa-calendar-day"></i> 剩余保质期 (天)
+                            </label>
+                            <input type="number" id="daysToExpire" placeholder="可选">
+                        </div>
+                        <div class="form-group half">
+                            <label for="totalDays">
+                                <i class="fas fa-calendar-alt"></i> 总保质期 (天)
+                            </label>
+                            <input type="number" id="totalDays" placeholder="可选">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="useCompetition">
+                            <i class="fas fa-store"></i> 参考竞争价格
+                        </label>
+                        <input type="number" id="competitionPrice" step="0.01" placeholder="竞争对手价格 (元)" class="hidden">
+                    </div>
+
+                    <div class="button-group">
+                        <button id="resetBtn" class="btn btn-secondary">
+                            <i class="fas fa-redo"></i> 重置
+                        </button>
+                        <button id="calculateBtn" class="btn btn-primary">
+                            <i class="fas fa-calculator"></i> 计算价格
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 结果显示 -->
+            <section id="resultsSection" class="results-section hidden">
+                <div class="card results-card">
+                    <h2><i class="fas fa-chart-line"></i> 定价建议</h2>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <span class="result-label">商品名称:</span>
+                            <span id="resultProductName" class="result-value">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">成本价格:</span>
+                            <span id="resultCostPrice" class="result-value">-</span>
+                        </div>
+                        <div class="result-item highlight">
+                            <span class="result-label">建议售价:</span>
+                            <span id="resultSuggestedPrice" class="result-value price">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">单件利润:</span>
+                            <span id="resultProfit" class="result-value profit">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">毛利率:</span>
+                            <span id="resultProfitMargin" class="result-value">-</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 历史记录 -->
+            <section id="historySection" class="history-section">
+                <div class="card">
+                    <h2><i class="fas fa-history"></i> 最近计算</h2>
+                    <div id="historyList" class="history-list">
+                        <div class="empty-history">暂无计算记录</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="app-footer">
+            <p>&copy; 2024 小店定价助手 - 让定价更简单</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
